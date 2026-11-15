@@ -2,23 +2,26 @@ package com.kdt.baseball.api;
 
 public class NumberBaseballController implements NumberBaseballApi {
 
-    private final NumberBaseballService  numberBaseballService  = new NumberBaseballService();
-    ///1단계 - 숫자규칙
+    ///객체 - Match
+    //행동 - ...
+    //룰 - 세자리, 0이 있는가, 같은 숫자가 없는가, 숫자 이외 것이 있는가.
+    ///enum
+    //판정 - 스트라이크, 불, 낫싱
+    //상태 - 승, 패, 진행중
+
+    private final Match match = new Match();
+
+    ///1단계
+    //정답을 정해서 새 게임 시작
     @Override
     public void start(String answer) {
-        if(!numberBaseballService.isRightAnswer(answer)){
-            throw new IllegalArgumentException();
-        }
-        numberBaseballService.setAnswer(answer);
+        match.CheckNumber(answer);
     }
 
     ///2단계 판정
     @Override
     public String guess(String number) {
-        if(!numberBaseballService.isRightAnswer(number)){
-            throw new IllegalArgumentException();
-        }
-        return numberBaseballService.guess(number);
+
     }
 
     @Override
