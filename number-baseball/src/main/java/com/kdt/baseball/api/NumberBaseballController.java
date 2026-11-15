@@ -15,13 +15,13 @@ public class NumberBaseballController implements NumberBaseballApi {
     //정답을 정해서 새 게임 시작
     @Override
     public void start(String answer) {
-        match.CheckNumber(answer);
+        match.start(answer);
     }
 
     ///2단계 판정
     @Override
     public String guess(String number) {
-
+        return match.guess(number);
     }
 
     @Override
