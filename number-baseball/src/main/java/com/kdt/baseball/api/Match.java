@@ -7,10 +7,19 @@ public class Match {
 
     ///상태
     int NumberLength = 3;
+    int Maxtries = 10;
+
     String answer;
+    int tries=0;
+    String statue = Statue.PLAYING.name();
 
     ///행동
-    public void start(String  answer){
+    public void start(){
+        this.tries = 0;
+        this.statue = Statue.PLAYING.name();
+    }
+
+    public void saveNumber(String  answer){
         validNumber(answer);
         this.answer = answer;
     }
@@ -22,11 +31,17 @@ public class Match {
         isOnlyHavingNumbers(answer);
     }
 
-    public String guess(String number){
+    public void saveTryNumber(String number){
         validNumber(number);
+        isStillPlaying(tries+1);
+        this.tries++;
+    }
+
+    public String guess(String number){
+        saveTryNumber(number);
         List<Character> answerList = ReturntoList(answer);
         List<Character> numberList = ReturntoList(number);
-        StringBuilder result = new StringBuilder();
+
         int strike = 0;
         int ball = 0;
 
@@ -41,6 +56,18 @@ public class Match {
             }
         }
 
+        String result = makeASentence(strike, ball);
+
+        if(result.equals(NumberLength+Call.STRIKE.label()))
+            this.statue = Statue.WIN.name();
+        else if(this.tries==10)
+            this.statue = Statue.LOSE.name();
+
+        return result;
+    }
+
+    public String makeASentence(int strike, int ball){
+        StringBuilder result = new StringBuilder();
         if(strike!=0 && ball!=0){
             result.append(strike);
             result.append(Call.STRIKE.label());
@@ -57,8 +84,15 @@ public class Match {
         else {
             result.append(Call.NOTHING.label());
         }
-
         return result.toString();
+    }
+
+    public int attempts(){
+        return this.tries;
+    }
+
+    public String statue(){
+        return this.statue;
     }
 
     ///룰
@@ -85,6 +119,15 @@ public class Match {
         for(char c : list){
             if(!Character.isDigit(c))
                 throw new IllegalArgumentException();
+        }
+    }
+
+    private void isStillPlaying(int tries){
+        if(this.tries>Maxtries){
+            this.statue = Statue.LOSE.name();
+        }
+        if(!this.statue.equals(Statue.PLAYING.name())){
+            throw new IllegalStateException();
         }
     }
 
