@@ -1,6 +1,7 @@
 package com.kdt.baseball.api;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class Match {
@@ -93,6 +94,12 @@ public class Match {
 
     public String statue(){
         return this.statue;
+    }
+
+    public String randomAnswer(){
+        List<String> nums = new ArrayList<>(List.of("1","2","3","4","5","6","7","8","9"));
+        Collections.shuffle(nums);
+        return nums.get(0)+nums.get(1)+nums.get(2);
     }
 
     ///룰

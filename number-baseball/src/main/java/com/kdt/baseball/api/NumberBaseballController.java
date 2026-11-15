@@ -11,16 +11,12 @@ public class NumberBaseballController implements NumberBaseballApi {
 
     private final Match match = new Match();
 
-    ///1단계
-    //정답을 정해서 새 게임 시작
     @Override
     public void start(String answer) {
         match.start();
         match.saveNumber(answer);
-
     }
 
-    ///2단계 판정
     @Override
     public String guess(String number) {
 
@@ -39,6 +35,6 @@ public class NumberBaseballController implements NumberBaseballApi {
 
     @Override
     public String randomAnswer() {
-        throw new UnsupportedOperationException("4단계");
+        return match.randomAnswer();
     }
 }
