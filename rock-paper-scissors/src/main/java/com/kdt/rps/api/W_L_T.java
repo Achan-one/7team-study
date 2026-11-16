@@ -1,6 +1,6 @@
 package com.kdt.rps.api;
 
-public enum WinOrLoss {
+public enum W_L_T {
     WIN,
     LOSE,
     DRAW
