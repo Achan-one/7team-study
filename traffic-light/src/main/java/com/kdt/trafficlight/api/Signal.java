@@ -1,26 +1,10 @@
 package com.kdt.trafficlight.api;
 
+//도메인 규칙
 public enum Signal {
-    RED(30) {
-        public Signal getNextSignal() {
-            return GREEN;
-        }
-    },
-    GREEN(25) {
-        public Signal getNextSignal() {
-            return YELLOW;
-        }
-    },
-    YELLOW(5) {
-        public Signal getNextSignal() {
-            return RED;
-        }
-    },
-    FLASHING_YELLOW(0) {
-        public Signal getNextSignal() {
-            return this;
-        }
-    };
+    RED(30),
+    GREEN(25),
+    YELLOW(5);
 
     private final int second;
 
@@ -32,5 +16,12 @@ public enum Signal {
         return second;
     }
 
-    public abstract Signal getNextSignal();
+    public Signal next() {
+        return switch (this) {
+            case RED -> GREEN;
+            case GREEN -> YELLOW;
+            case YELLOW -> RED;
+        };
+    }
 }
+

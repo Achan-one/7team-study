@@ -4,6 +4,7 @@ public class TrafficLightController implements TrafficLightApi {
 
 
     ///객체
+
     //상태 - 현재 신호, 남은 시간, 버튼
     //행동 -
         // start - 빨강으로 초기화
@@ -24,41 +25,42 @@ public class TrafficLightController implements TrafficLightApi {
 
     @Override
     public String signal() {
-        return trafficLight.signal();
+        return trafficLight.getSignal();
     }
 
     @Override
     public int remainingSeconds() {
-        throw new UnsupportedOperationException("2단계");
+        return trafficLight.getSecond();
     }
 
     @Override
     public String pedestrianSignal() {
-        throw new UnsupportedOperationException("3단계");
+        return trafficLight.getPedestrian();
     }
 
     @Override
     public void next() {
-        trafficLight.moveNext();
+        trafficLight.getNext();
     }
 
     @Override
     public void elapse(int seconds) {
-        throw new UnsupportedOperationException("2단계");
+        trafficLight.moveTime(seconds);
+
     }
 
     @Override
     public void pressPedestrianButton() {
-        throw new UnsupportedOperationException("3단계");
+        trafficLight.pushButton();
     }
 
     @Override
     public void breakDown() {
-        throw new UnsupportedOperationException("4단계");
+        trafficLight.breakDown();
     }
 
     @Override
     public void repair() {
-        throw new UnsupportedOperationException("4단계");
+        trafficLight.repair();
     }
 }
