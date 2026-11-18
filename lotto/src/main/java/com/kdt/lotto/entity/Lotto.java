@@ -6,8 +6,8 @@ public class Lotto {
     private static final int START = 1;
     private static final int END = 45;
     private static final int NUMBERLENGTH= 6;
-    private static final int BONUSLENGTH= 1;
-
+    private static final int PRISE = 1000;
+    private static final int MAXMONEY = 100_000;
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers){
@@ -17,15 +17,26 @@ public class Lotto {
         orderByAscending();
     }
 
-    public Lotto(List<Integer> numbers, int bonus){
-        validNumber(numbers);
-        this.numbers = new ArrayList<>(numbers);
-        validBonus(bonus);
-        orderByAscending();
+    public List<Integer> getNumbers() {
+        return this.numbers;
     }
 
-    public List<Integer> getNumber() {
-        return this.numbers;
+    public static int getPrise() {
+        return PRISE;
+    }
+
+    public static int getNumOfBeingAbleToBuy(int money){
+        validMoney(money);
+        return money/PRISE;
+    }
+
+    public static List<Integer> autoMakeNumber(){
+        List<Integer> numbers = new ArrayList<>();
+        for(int count=START; count<=END; count++) {
+            numbers.add(count);
+        }
+        Collections.shuffle(numbers);
+        return new ArrayList<>(numbers.subList(0, NUMBERLENGTH));
     }
 
     private void validNumber(List<Integer> numbers){
@@ -34,11 +45,9 @@ public class Lotto {
         doNotHaveSameNumbers(numbers);
     }
 
-    private void validBonus(int bonus){
-        List<Integer> checkBonus = List.of(bonus);
-        isNotOutOfRange(checkBonus);
-        isNotOutOfLength(checkBonus, BONUSLENGTH);
-        doNotHaveSameNumbersWithBonus(checkBonus, this.numbers);
+    private static void validMoney(int money){
+        if(money <= 0 || money % PRISE != 0 || money > MAXMONEY)
+            throw new IllegalArgumentException();
     }
 
     private void isNotOutOfRange(List<Integer> numbers){
@@ -58,10 +67,7 @@ public class Lotto {
             throw new IllegalArgumentException();
     }
 
-    private void doNotHaveSameNumbersWithBonus(List<Integer> bonus, List<Integer> numbers){
-        if(numbers.contains(bonus.get(0)))
-            throw new IllegalArgumentException();
-    }
+
 
     private void orderByAscending(){
         Collections.sort(this.numbers);
