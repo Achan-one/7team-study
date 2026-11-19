@@ -6,7 +6,6 @@ import java.util.List;
 import java.util.Set;
 
 public class BallNumber {
-    static final int SIZE = 3;
     private final List<Integer> numbers;
 
     public BallNumber(List<Integer> numbers) {
@@ -52,15 +51,15 @@ public class BallNumber {
     }
 
     private static void validateSize(List<Integer> numbers){
-        if(numbers.size()!= SIZE){
-            throw new IllegalArgumentException("숫자의 개수는 " + SIZE + "개입니다.");
+        if(numbers.size()!= GameRule.SIZE){
+            throw new IllegalArgumentException("숫자의 개수는 " + GameRule.SIZE + "개입니다.");
         }
     }
 
     private static void validateRange(List<Integer> numbers){
         for(int number : numbers){
-            if(number < 1 || number > 9){
-                throw new IllegalArgumentException("숫자는 1-9사이의 정수입니다.");
+            if(number < GameRule.MIN_NUMBER || number > GameRule.MAX_NUMBER){
+                throw new IllegalArgumentException("숫자는 " + GameRule.MIN_NUMBER + "-" + GameRule.MAX_NUMBER + "사이의 정수입니다.");
             }
         }
     }
