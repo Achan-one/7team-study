@@ -10,7 +10,7 @@ public class BallNumber {
     private final List<Integer> numbers;
 
     public BallNumber(List<Integer> numbers) {
-        validateNotNull(numbers);
+        Validator.validateNotNull(numbers);
         validateSize(numbers);
         validateRange(numbers);
         validateNoDuplicate(numbers);
@@ -19,7 +19,7 @@ public class BallNumber {
     }
 
     public static BallNumber of(String value) {
-        validateNotNull(value);
+        Validator.validateNotNull(value);
 
         if (!value.matches("^[0-9]+$")) {
             throw new IllegalArgumentException("숫자가 아닌 글자가 포함되어서는 안 됩니다.");
@@ -103,12 +103,6 @@ public class BallNumber {
 
         if (set.size() < numbers.size()) {
             throw new IllegalArgumentException("숫자는 중복되어서는 안 됩니다.");
-        }
-    }
-
-    private static void validateNotNull(Object value) {
-        if (value == null) {
-            throw new IllegalArgumentException("값은 null일 수 없습니다.");
         }
     }
 }
