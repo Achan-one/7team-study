@@ -9,6 +9,7 @@ public class Score {
 
     public Score(int strike, int ball) {
         validateNotNegative(strike,ball);
+        validateTotal(strike,ball);
         this.strike = strike;
         this.ball = ball;
     }
@@ -39,7 +40,7 @@ public class Score {
 
     private static void validateTotal(int strike, int ball){
         if(strike+ball > GameRule.SIZE){
-            throw new IllegalArgumentException("스트라이크와 볼의 합은 자릿수보다 작아야 합니다.");
+            throw new IllegalArgumentException("스트라이크와 볼의 합은 자릿수 이하여야 합니다.");
         }
     }
 
