@@ -11,6 +11,7 @@ public class Score {
     public Score(int strike, int ball) {
         validateNotNegative(strike, ball);
         validateTotal(strike, ball);
+        validatePossible(strike, ball);
 
         this.strike = strike;
         this.ball = ball;
@@ -61,6 +62,12 @@ public class Score {
     private static void validateTotal(int strike, int ball) {
         if (strike + ball > GameRule.SIZE) {
             throw new IllegalArgumentException("스트라이크와 볼의 합은 자릿수 이하여야 합니다.");
+        }
+    }
+
+    private static void validatePossible(int strike, int ball) {
+        if (strike == GameRule.SIZE - 1 && ball == 1) {
+            throw new IllegalArgumentException("스트라이크가 " + strike + "개이면 볼은 나올 수 없습니다.");
         }
     }
 }
