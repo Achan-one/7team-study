@@ -8,6 +8,7 @@ public class Score {
     private final int ball;
 
     public Score(int strike, int ball) {
+        validateNotNegative(strike,ball);
         this.strike = strike;
         this.ball = ball;
     }
@@ -28,6 +29,12 @@ public class Score {
         }
 
         return String.join(" ", scoreList);
+    }
+
+    private static void validateNotNegative(int strike, int ball){
+        if(strike < 0 || ball < 0){
+            throw new IllegalArgumentException("스트라이크와 볼은 0 이상이어야 합니다.");
+        }
     }
 
     public int getStrike() {
