@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Set;
 
 public class BallNumber {
-    private static final int SIZE = 3;
+    static final int SIZE = 3;
     private final List<Integer> numbers;
 
     public BallNumber(List<Integer> numbers) {

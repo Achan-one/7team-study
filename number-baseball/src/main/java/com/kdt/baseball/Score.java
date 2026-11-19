@@ -37,6 +37,12 @@ public class Score {
         }
     }
 
+    private static void validateTotal(int strike, int ball){
+        if(strike+ball > BallNumber.SIZE){
+            throw new IllegalArgumentException("스트라이크와 볼의 합은 자릿수보다 작아야 합니다.");
+        }
+    }
+
     public int getStrike() {
         return strike;
     }
