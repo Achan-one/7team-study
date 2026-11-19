@@ -2,6 +2,7 @@ package com.kdt.baseball;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class Score {
     private final int strike;
@@ -30,6 +31,24 @@ public class Score {
         }
 
         return String.join(" ", scoreList);
+    }
+
+    @Override
+    public boolean equals(Object o){
+        if(this == o){
+            return true;
+        }
+        if(o == null || getClass() != o.getClass()){
+            return false;
+        }
+        Score other = (Score) o;
+
+        return strike == other.strike && ball == other.ball;
+    }
+
+    @Override
+    public int hashCode(){
+        return Objects.hash(strike, ball);
     }
 
     private static void validateNotNegative(int strike, int ball){
