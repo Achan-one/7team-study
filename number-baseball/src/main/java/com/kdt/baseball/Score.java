@@ -62,12 +62,4 @@ public class Score {
             throw new IllegalArgumentException("스트라이크와 볼의 합은 자릿수 이하여야 합니다.");
         }
     }
-
-    public int getStrike() {
-        return strike;
-    }
-
-    public int getBall() {
-        return ball;
-    }
 }
