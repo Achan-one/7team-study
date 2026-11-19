@@ -1,9 +1,6 @@
 package com.kdt.baseball;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 public class BallNumber {
     private final List<Integer> numbers;
@@ -48,6 +45,24 @@ public class BallNumber {
         }
 
         return new Score(strike,ball);
+    }
+
+    @Override
+    public boolean equals(Object o){
+        if(this == o){
+            return true;
+        }
+        if(o == null || getClass() != o.getClass()){
+            return false;
+        }
+        BallNumber ballNumber = (BallNumber) o;
+
+        return Objects.equals(numbers, ballNumber.numbers);
+    }
+
+    @Override
+    public int hashCode(){
+        return Objects.hash(numbers);
     }
 
     private static void validateSize(List<Integer> numbers){
