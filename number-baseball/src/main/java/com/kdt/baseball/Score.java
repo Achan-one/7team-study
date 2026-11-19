@@ -9,24 +9,25 @@ public class Score {
     private final int ball;
 
     public Score(int strike, int ball) {
-        validateNotNegative(strike,ball);
-        validateTotal(strike,ball);
+        validateNotNegative(strike, ball);
+        validateTotal(strike, ball);
+
         this.strike = strike;
         this.ball = ball;
     }
 
     @Override
-    public String toString(){
+    public String toString() {
         List<String> scoreList = new ArrayList<>();
 
-        if(strike > 0){
+        if (strike > 0) {
             scoreList.add(strike + "스트라이크");
         }
-        if(ball > 0){
+        if (ball > 0) {
             scoreList.add(ball + "볼");
         }
 
-        if(scoreList.isEmpty()){
+        if (scoreList.isEmpty()) {
             return "낫싱";
         }
 
@@ -34,11 +35,11 @@ public class Score {
     }
 
     @Override
-    public boolean equals(Object o){
-        if(this == o){
+    public boolean equals(Object o) {
+        if (this == o) {
             return true;
         }
-        if(o == null || getClass() != o.getClass()){
+        if (o == null || getClass() != o.getClass()) {
             return false;
         }
         Score other = (Score) o;
@@ -47,18 +48,18 @@ public class Score {
     }
 
     @Override
-    public int hashCode(){
+    public int hashCode() {
         return Objects.hash(strike, ball);
     }
 
-    private static void validateNotNegative(int strike, int ball){
-        if(strike < 0 || ball < 0){
+    private static void validateNotNegative(int strike, int ball) {
+        if (strike < 0 || ball < 0) {
             throw new IllegalArgumentException("스트라이크와 볼은 0 이상이어야 합니다.");
         }
     }
 
-    private static void validateTotal(int strike, int ball){
-        if(strike+ball > GameRule.SIZE){
+    private static void validateTotal(int strike, int ball) {
+        if (strike + ball > GameRule.SIZE) {
             throw new IllegalArgumentException("스트라이크와 볼의 합은 자릿수 이하여야 합니다.");
         }
     }

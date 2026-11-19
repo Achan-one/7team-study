@@ -5,6 +5,7 @@ final class GameRule {
     static final int MIN_NUMBER = 1;
     static final int MAX_NUMBER = 9;
     static final int MAX_ATTEMPTS = 10;
+
     private GameRule() {
     }
 }
