@@ -46,4 +46,8 @@ public class Game {
             throw new IllegalArgumentException("값은 null일 수 없습니다.");
         }
     }
+
+    public int getAttempts() {
+        return attempts;
+    }
 }

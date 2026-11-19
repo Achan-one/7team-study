@@ -65,6 +65,17 @@ public class BallNumber {
         return Objects.hash(numbers);
     }
 
+    @Override
+    public String toString(){
+        StringBuilder sb = new StringBuilder();
+
+        for(int number : numbers){
+            sb.append(number);
+        }
+
+        return sb.toString();
+    }
+
     private static void validateSize(List<Integer> numbers){
         if(numbers.size()!= GameRule.SIZE){
             throw new IllegalArgumentException("숫자의 개수는 " + GameRule.SIZE + "개입니다.");
