@@ -33,6 +33,24 @@ public class BallNumber {
         return new BallNumber(list);
     }
 
+    public Score judge (BallNumber other){
+        int strike = 0;
+        int ball = 0;
+
+        for(int i = 0; i < other.numbers.size(); i++){
+            int num1 = numbers.get(i);
+            int num2 = other.numbers.get(i);
+
+            if(num1 == num2){
+                strike++;
+            }else if(numbers.contains(num2)){
+                ball++;
+            }
+        }
+
+        return new Score(strike,ball);
+    }
+
     private static void validateSize(List<Integer> numbers){
         if(numbers.size()!= SIZE){
             throw new IllegalArgumentException("숫자의 개수는 " + SIZE + "개입니다.");
